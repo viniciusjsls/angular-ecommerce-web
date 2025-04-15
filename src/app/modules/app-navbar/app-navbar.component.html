@@ -3,11 +3,11 @@
     <mat-icon>menu</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>Search & Buy</button>
+    <button mat-menu-item routerLink="/product-search" routerLinkActive="active-link">Search & Buy</button>
   </mat-menu>
-  <span>Angular Ecommerce Web</span>
+  <span routerLink="/">Angular Ecommerce Web</span>
   <span class="toolbar-spacer"></span>
-  <button mat-icon-button class="favorite-icon">
+  <button mat-icon-button routerLink="/profile" routerLinkActive="active-link">
     <mat-icon>account_circle</mat-icon>
   </button>
 </mat-toolbar>
