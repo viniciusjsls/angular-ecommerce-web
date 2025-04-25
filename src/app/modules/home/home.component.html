@@ -1,12 +1,12 @@
-<p>home works!</p>
-
-<form>
-  <mat-form-field style="width: 100%">
-    <mat-label>Search & Buy</mat-label>
-    <input matInput #message maxlength="256" placeholder="Type to search for the products you want...">
-    <mat-hint align="start"><strong>X products available for your convenience!</strong></mat-hint>
-  </mat-form-field>
-</form>
+@if (vm$ | async; as vm) {
+  <form>
+    <mat-form-field style="width: 100%">
+      <mat-label>Search & Buy</mat-label>
+      <input matInput #message maxlength="256" placeholder="Type to search for the products you want...">
+      <mat-hint align="start"><strong>{{vm.productsAvailableCount}} products available for your convenience!</strong></mat-hint>
+    </mat-form-field>
+  </form>
+}
 
 <mat-grid-list cols="4" rowHeight="2:1">
   <mat-grid-tile>1</mat-grid-tile>
