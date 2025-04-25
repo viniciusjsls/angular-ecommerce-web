@@ -1,8 +1,13 @@
 @if (vm$ | async; as vm) {
-  <form>
+  <form [formGroup]="form">
     <mat-form-field style="width: 100%">
       <mat-label>Search & Buy</mat-label>
-      <input matInput #message maxlength="256" placeholder="Type to search for the products you want...">
+      <input
+        matInput
+        #message
+        maxlength="256"
+        placeholder="Type to search for the products you want..."
+        formControlName="search">
       <mat-hint align="start"><strong>{{vm.productsAvailableCount}} products available for your convenience!</strong></mat-hint>
     </mat-form-field>
   </form>

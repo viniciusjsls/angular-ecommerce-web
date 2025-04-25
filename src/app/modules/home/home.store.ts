@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ComponentStore } from "@ngrx/component-store";
+import { HomeFormService } from "./home.form.service";
 
 export interface HomeStoreState {
   productsAvailableCount: number,
@@ -15,6 +16,8 @@ const initialState: () => HomeStoreState = () => {
 @Injectable()
 export class HomeStore extends ComponentStore<HomeStoreState> {
 
+  form = this._homeFormService.form;
+  
   readonly vm$ = this.select(
     this.state$,
     (state) => ({
@@ -22,7 +25,9 @@ export class HomeStore extends ComponentStore<HomeStoreState> {
     })
   );
 
-  constructor() {
+  constructor(
+    private _homeFormService: HomeFormService
+  ) {
     super(initialState());
 
 
