@@ -2,7 +2,7 @@ import { createReducer, on } from "@ngrx/store";
 import { initializeConfig } from "./shared-store.actions";
 
 export interface ISharedConfig {
-  url: string,
+  productsUrl: string,
 }
 
 export interface ISharedStoreState {
@@ -21,6 +21,9 @@ export const sharedStoreReducer = createReducer(
   on(initializeConfig, (state, action) => initializeConfigState(state, action)),
 );
 
-export function initializeConfigState(state: ISharedStoreState, action: ISharedConfig): ISharedStoreState {
-  return state;
+export function initializeConfigState(state: ISharedStoreState, config: ISharedConfig): ISharedStoreState {
+  return {
+    ...state,
+    config
+  };
 }

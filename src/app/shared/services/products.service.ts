@@ -9,7 +9,7 @@ import { Product } from "../models/product";
 
 @Injectable()
 export class ProductsService extends Destroyable {
-  private url: string = '';
+  private productsUrl: string = '';
 
   constructor(private httpClient: HttpClient, private store: Store<IState>) {
     super();
@@ -17,8 +17,8 @@ export class ProductsService extends Destroyable {
       .select(selectConfigData)
       .pipe(takeUntil(this.destroy$))
       .subscribe((configData) => {
-        if (configData?.url) {
-          this.url = configData.url;
+        if (configData?.productsUrl) {
+          this.productsUrl = configData.productsUrl;
         }
       });
   }
@@ -30,12 +30,15 @@ export class ProductsService extends Destroyable {
       .set('searchString', searchString);
 
     return this.httpClient
-      .get<Product[]>(this.url, {
+      .get<Product[]>(this.productsUrl, {
         params: params,
       })
       .pipe(
         map((response) => {
-          return [new Product('123', 'Random Name')];
+          return [
+            new Product('123', 'Random Name'),
+            new Product('321', 'Another Name')
+          ];
         }),
         retry(2)
       );
