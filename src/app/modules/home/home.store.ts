@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ComponentStore } from "@ngrx/component-store";
 import { HomeFormService } from "./home.form.service";
+import { ProductsService } from "../../shared/services/products.service";
 
 export interface HomeStoreState {
   productsAvailableCount: number,
@@ -26,10 +27,19 @@ export class HomeStore extends ComponentStore<HomeStoreState> {
   );
 
   constructor(
-    private _homeFormService: HomeFormService
+    private _homeFormService: HomeFormService,
+    private _productsService: ProductsService,
   ) {
     super(initialState());
 
+    this.loadProductsAvailableCount();
+  }
 
+  loadProductsAvailableCount() {
+    this._productsService.getAvailableProductsCount().subscribe((count) => {
+      this.patchState({
+        productsAvailableCount: count
+      });
+    });
   }
 }

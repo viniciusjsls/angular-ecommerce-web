@@ -5,8 +5,7 @@ import { ProductsService } from '../../shared/services/products.service';
   selector: 'app-product-search',
   imports: [],
   templateUrl: './product-search.component.html',
-  styleUrl: './product-search.component.scss',
-  providers: [ProductsService]
+  styleUrl: './product-search.component.scss'
 })
 export class ProductSearchComponent {
 }

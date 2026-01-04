@@ -7,6 +7,7 @@ import { provideStore } from '@ngrx/store';
 import { stateReducers } from './store/state';
 import { provideHttpClient } from '@angular/common/http';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { MockProductsService, ProductsService, RealProductsService } from './shared/services/products.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,6 +23,11 @@ export const appConfig: ApplicationConfig = {
       traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
       connectInZone: true // If set to true, the connection is established within the Angular zone
     }),
-    provideHttpClient()
+    provideHttpClient(),
+    {
+      provide: ProductsService,
+      // If we are in Dev Mode, use the Mock, otherwise use the Real one
+      useClass: isDevMode() ? MockProductsService : RealProductsService
+    }
 ]
 };
